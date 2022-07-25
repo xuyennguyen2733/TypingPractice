@@ -1,7 +1,7 @@
 "use strict";
 
 const roman = [..."`1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./ "];
-const bopomofo = [..." ㄅㄉˇˋㄓˊ˙ㄚㄞㄢㄦ ㄆㄊㄍㄐㄔㄗㄧㄛㄟㄣ【】ㄇㄋㄎㄑㄕㄘㄨㄜㄠㄤ「ㄈㄌㄏㄒㄖㄙㄩㄝㄡㄥ "];
+const bopomofo = [..."`ㄅㄉˇˋㄓˊ˙ㄚㄞㄢㄦ=ㄆㄊㄍㄐㄔㄗㄧㄛㄟㄣ【】ㄇㄋㄎㄑㄕㄘㄨㄜㄠㄤ「ㄈㄌㄏㄒㄖㄙㄩㄝㄡㄥ "];
 const bopomofoMap = new Map();
 const romanMap = new Map();
 const keyClassMap = new Map();
@@ -28,13 +28,17 @@ function CreateKeyElement(i, r) {
 }
 
 function HightlightCurrentKey(key) {
-  const classNumber = keyClassMap.get(key.toLowerCase());
-  const keyEl = document.querySelector(`.key-${classNumber}`);
-  keyEl.classList.add("current");
+  if (key) {
+    const classNumber = keyClassMap.get(key.toLowerCase());
+    const keyEl = document.querySelector(`.key-${classNumber}`);
+    keyEl.classList.add("current");
+  }
 }
 
 function UnHightlightCurrentKey(key) {
-  const classNumber = keyClassMap.get(key.toLowerCase());
-  const keyEl = document.querySelector(`.key-${classNumber}`);
-  keyEl.classList.remove("current");
+  if (key) {
+    const classNumber = keyClassMap.get(key.toLowerCase());
+    const keyEl = document.querySelector(`.key-${classNumber}`);
+    keyEl.classList.remove("current");
+  }
 }

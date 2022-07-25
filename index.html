@@ -9,16 +9,33 @@
     <title>Typing Practice</title>
   </head>
   <body>
+    <div class="overlay hidden"></div>
+    <div class="custom-container hidden">
+      <textarea type="text" class="custom-text"></textarea>
+      <div class="controlls">
+        <!-- <iput type="radio" id="bopomofo-mode" name="practice-mode" class="mode" value="1" />
+        <iput type="radio" id="roman-mode" name="practice-mode" class="mode" value="0" /> -->
+        <div class="input-radio">
+          <input type="radio" id="bopomofo-mode" value="bopomofo-mode" name="mode" />
+          <label for="bopomofo-mode">Bopomofo</label>
+        </div>
+        <div class="input-radio"><input type="radio" id="roman-mode" value="roman-mode" name="mode" /> <label for="roman-mode">Roman</label></div>
+        <button class="btn-cancel">Cancel</button>
+        <button class="btn-save">Save</button>
+      </div>
+    </div>
+    <h1 class="level-title">Level 1</h1>
     <div class="container">
       <div class="textbox"></div>
       <div class="keyboard"></div>
     </div>
     <div class="controll-container">
-      <button class="btn-next">Previous Level</button>
+      <button class="btn-previous">Previous Level</button>
       <button class="btn-again">Again</button>
       <button class="btn-next">Next Level</button>
       <button class="btn-customize">Customize Text</button>
     </div>
+
     <script type="text/javascript" src="js/lessons.js"></script>
     <script type="text/javascript" src="js/textbox.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
