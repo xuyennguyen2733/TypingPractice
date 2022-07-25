@@ -1,8 +1,8 @@
 "use strict";
 
 const textbox = document.querySelector(".textbox");
-const currentStyle = "color: black; font-weight: bold; text-decoration: underline;";
-const incorrectStyle = "color: red; font-weight: bold; text-decoration: underline;";
+const currentStyle = "color: black; font-weight: bold; font-size: 110%;text-decoration: underline;";
+const incorrectStyle = "color: red; font-weight: bold; font-size: 110%; text-decoration: underline;";
 const correctStyle = "color: green;";
 let currentChar, currentIndex, textboxEls, currentLessonIndex, textArr;
 
@@ -20,6 +20,7 @@ function textboxInit(firstLesson = 0) {
   });
   textboxEls = textbox.children;
   textboxEls[currentIndex].setAttribute("style", currentStyle);
+  HightlightCurrentKey(currentChar);
 }
 function NextCharacter(isCorrect) {
   if (isCorrect) {
