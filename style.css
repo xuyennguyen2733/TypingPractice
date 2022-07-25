@@ -1,0 +1,99 @@
+body {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 1000px;
+}
+
+.controll-container {
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: aqua;
+}
+
+[class*="btn-"] {
+  padding: 5px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: solid white;
+  width: 150px;
+}
+
+.btn-previous {
+  background-color: rgb(255, 207, 86);
+}
+.btn-next {
+  background-color: rgb(255, 207, 86);
+}
+
+.keyboard {
+  display: grid;
+  /* margin-left: 20px; */
+  /* margin-right: 20px; */
+  padding: 20px;
+  background-color: rgb(191, 116, 128);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: inset 1px 0px 2px 2px rgb(144, 87, 96), inset -1px 0px 2px 2px rgb(144, 87, 96);
+}
+
+.textbox {
+  min-height: 100px;
+  background-color: rgb(255, 227, 232);
+  border: solid rgb(105, 60, 66) 2px;
+  padding: 30px;
+  border-top-left-radius: 20%;
+  border-top-right-radius: 20%;
+  font-size: 36px;
+}
+
+[class*="row"] {
+  display: flex;
+  justify-content: center;
+}
+
+[class*="row"] div {
+  margin: 5px;
+}
+
+.keyboard div[class*="key"] {
+  font-weight: 700;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+
+  border-radius: 2px;
+}
+
+.keyboard .key-46 {
+  width: 400px !important;
+}
+
+.neutral {
+  background-color: pink;
+  box-shadow: 2px 2px 2px 2px rgba(90, 49, 49, 0.632), inset 1px 1px 5px 3px rgb(224, 168, 177);
+}
+.current {
+  background-color: rgb(255, 224, 236);
+  box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 8px -10px 15px 20px rgb(255, 130, 159);
+}
+
+.incorrect {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 1px 1px 1px 1px rgba(49, 27, 27, 0.693);
+}
+.correct {
+  background-color: pink;
+  filter: brightness(90%);
+  box-shadow: 2px 2px 2px 2px rgba(90, 49, 49, 0.632), inset 1px 1px 5px 3px rgb(224, 168, 177);
+}
