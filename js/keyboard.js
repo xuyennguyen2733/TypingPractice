@@ -9,6 +9,9 @@ const keyClassMap = new Map();
 roman.forEach((element, index) => {
   bopomofoMap.set(bopomofo[index], element);
   romanMap.set(element, element);
+  if (element >= "a" && element <= "z") {
+    romanMap.set(element.toUpperCase(), element.toUpperCase());
+  }
   keyClassMap.set(element, index);
 });
 

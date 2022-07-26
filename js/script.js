@@ -31,7 +31,11 @@ romanBtn.addEventListener("click", SetPracticeMode);
 
 bopomofoBtn.checked = true;
 
-let currentMap = bopomofoMap;
+const mapObj = {
+  currentMap: bopomofoMap,
+  mode: "bopomofo-mode",
+};
+// let currentMap = ;
 let currentLessonIndex;
 let isCustomed;
 
@@ -127,22 +131,35 @@ function CancelCustomText() {
 }
 
 function SaveCustomText() {
-  const tempTextArr = [...customInput.value];
-  if (currentMap.get(tempTextArr[0])) {
-    UnHightlightCurrentKey(currentChar);
-    textboxInit("custom", true, customInput.value);
-    CancelCustomText();
+  if (customInput.value.length <= 0) {
+    customInput.placeholder = "Text cannot be empty!";
+    customInput.style.placeholderColor = "red";
   } else {
-    customInput.value = "";
-    customInput.placeholder = "Errors mapping keys. Check the practice mode.";
-    // throw "Error mapping keys. Check the practice mode again";
+    let isValid = true;
+    const tempTextArr = [...customInput.value];
+    tempTextArr.forEach((char) => {
+      console.log(mapObj.currentMap.get(char));
+      if (!mapObj.currentMap.get(char)) {
+        isValid = false;
+      }
+    });
+    if (isValid) {
+      UnHightlightCurrentKey(currentChar);
+      textboxInit("custom", true, customInput.value);
+      CancelCustomText();
+    } else {
+      customInput.value = "";
+      customInput.placeholder = "Errors mapping keys. Check the practice mode.";
+      // throw "Error mapping keys. Check the practice mode again";
+    }
   }
 }
 
 function SetPracticeMode() {
   if (this.value === "bopomofo-mode") {
-    currentMap = bopomofoMap;
+    mapObj.currentMap = bopomofoMap;
   } else {
-    currentMap = romanMap;
+    mapObj.currentMap = romanMap;
   }
+  mapObj.mode = this.value;
 }

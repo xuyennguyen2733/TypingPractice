@@ -85,12 +85,24 @@ button:active {
   box-shadow: inset 1px 0px 2px 2px rgb(144, 87, 96), inset -1px 0px 2px 2px rgb(144, 87, 96);
 }
 
+.textbox span {
+  display: inline-block;
+}
+
 .textbox {
+  display: grid;
+  grid-template-columns: repeat(25, 3.7rem);
+  grid-template-rows: repeat(7, 3.7rem);
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
   min-height: 25rem;
   /* background-color: rgb(255, 227, 232); */
   background-image: linear-gradient(to top right, rgb(255, 227, 232), rgb(255, 244, 246), rgb(239, 204, 210));
   border: solid rgb(105, 60, 66) 2px;
-  padding: 3rem;
+  /* padding: 3rem; */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
   font-size: 3.2rem;
