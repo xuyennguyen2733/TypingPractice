@@ -86,7 +86,7 @@ function NextCharacter(isCorrect) {
         textboxInit(currentLessonIndex);
       } else {
         title.textContent =
-          "Finished! Click 'Again' try again, 'Previous Level' to get back to the first lesson, or 'Customize Text' to Create a new custom lesson.";
+          "Finished! Click 'Again' try again, 'Previous Level' to get back to the previous lesson, or 'Customize Text' to Create a new custom lesson.";
         title.setAttribute("style", finishMessageStyle);
 
         // mapObj.currentMap = bopomofoMap;
