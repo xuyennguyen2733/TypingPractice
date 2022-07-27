@@ -92,7 +92,11 @@ function keyupFeedback(e) {
 
 function ToPreviousLesson(e) {
   e.preventDefault();
-  if (currentLessonIndex - 1 >= 0 && currentLessonIndex < lessons.length) {
+  if (isCustomed) {
+    textboxInit(0);
+  } else if (currentLessonIndex - 1 >= 0 && currentLessonIndex < lessons.length) {
+    mapObj.currentMap = bopomofoMap;
+    mapObj.isBopomofo = false;
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex - 1);
   }
@@ -108,9 +112,13 @@ function ToNextLesson(e) {
 }
 function ResetLesson(e) {
   e.preventDefault();
-  if (isNaN(currentLessonIndex) || currentLessonIndex < 0 || currentLessonIndex >= lessons.length) currentLessonIndex = 0;
-  UnHightlightCurrentKey(currentChar);
-  textboxInit(currentLessonIndex);
+  if (isCustomed) {
+    textboxInit("custom", true, textbox.textContent);
+  } else {
+    if (isNaN(currentLessonIndex) || currentLessonIndex < 0 || currentLessonIndex >= lessons.length) currentLessonIndex = 0;
+    UnHightlightCurrentKey(currentChar);
+    textboxInit(currentLessonIndex);
+  }
   this.blur();
 }
 function SetCustomText(e) {
@@ -126,6 +134,7 @@ function CancelCustomText() {
   overlay.classList.add("hidden");
   document.addEventListener("keydown", keydownFeedback);
   document.addEventListener("keyup", keyupFeedback);
+  customInput.placeholder = "";
   customInput.value = "";
   bopomofoBtn.checked = true;
 }
@@ -133,7 +142,6 @@ function CancelCustomText() {
 function SaveCustomText() {
   if (customInput.value.length <= 0) {
     customInput.placeholder = "Text cannot be empty!";
-    customInput.style.placeholderColor = "red";
   } else {
     let isValid = true;
     const tempTextArr = [...customInput.value];
@@ -157,6 +165,7 @@ function SaveCustomText() {
 
 function SetPracticeMode() {
   mapObj.isBopomofo = this.value === "bopomofo-mode";
+  console.log(this.value);
   if (mapObj.isBopomofo) {
     mapObj.currentMap = bopomofoMap;
   } else {

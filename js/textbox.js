@@ -6,7 +6,7 @@ const currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bo
 const incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px";
 const correctStyle = "color: green;";
 const finishMessageStyle = "text-align: center;color: green; font-size: 2rem; margin: 2rem";
-const titleStyle = "padding-top: 4rem; padding-bottom: 4rem; font-family: sans-serif; font-weight: 900; color: rgb(112, 55, 64); font-size: 5rem;";
+const titleStyle = "padding-top: 2rem; padding-bottom: 2rem; font-family: sans-serif; font-weight: 900; color: rgb(112, 55, 64); font-size: 5rem;";
 let currentChar, currentIndex, textboxEls, textArr;
 
 function textboxInit(level = 0, custom = false, customText) {
@@ -33,6 +33,7 @@ function textboxInit(level = 0, custom = false, customText) {
   textbox.innerHTML = "";
   // let charCount = 0;
   // let tempTextArr = [];
+
   textArr.forEach((char, index) => {
     // if (char !== " " || charCount % 25 !== 0) {
     // tempTextArr += char;
@@ -84,11 +85,12 @@ function NextCharacter(isCorrect) {
         UnHightlightCurrentKey(currentChar);
         textboxInit(currentLessonIndex);
       } else {
-        title.textContent = "Finished! Click 'Again' to return to the first lesson or 'Customize Text' to Create a Custom Lesson.";
+        title.textContent =
+          "Finished! Click 'Again' try again, 'Previous Level' to get back to the first lesson, or 'Customize Text' to Create a new custom lesson.";
         title.setAttribute("style", finishMessageStyle);
 
-        mapObj.currentMap = bopomofoMap;
-        mapObj.isBopomofo = true;
+        // mapObj.currentMap = bopomofoMap;
+        // mapObj.isBopomofo = true;
       }
     }
   } else {

@@ -17,12 +17,7 @@ body {
 }
 
 .level-title {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
   font-family: sans-serif;
-  font-weight: 900;
-  color: rgb(112, 55, 64);
-  font-size: 5rem;
 }
 
 .container {
@@ -30,11 +25,14 @@ body {
 }
 
 .controll-container {
+  /* position: fixed; */
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   width: 100rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  /* margin-top: 5rem; */
 }
 
 button:hover {
@@ -90,7 +88,7 @@ button:active {
 } */
 
 .textbox {
-  min-height: 25rem;
+  height: 45rem;
   /* background-color: rgb(255, 227, 232); */
   background-image: linear-gradient(to top right, rgb(255, 227, 232), rgb(255, 244, 246), rgb(239, 204, 210));
   border: solid rgb(105, 60, 66) 2px;
@@ -102,12 +100,13 @@ button:active {
 }
 
 .text-bopomofo {
+  /* font-weight: 600; */
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
   display: grid;
   grid-template-columns: repeat(25, 3.7rem);
-  grid-template-rows: repeat(7, 3.7rem);
+  grid-template-rows: repeat(11, 3.7rem);
   justify-content: center;
   align-content: center;
   justify-items: center;
@@ -118,7 +117,8 @@ button:active {
   /* height: 3.7rem; */
   /* line-height: 5rem; */
 }
-.text-roman span {
+.text-bopomofo span {
+  width: 3.7rem;
   /* background-color: pink; */
   /* padding: 3rem; */
   /* position: relative; */
@@ -222,8 +222,12 @@ button:active {
   margin: 1rem;
   border: solid rgb(146, 108, 114) 3px;
 }
+.custom-container textarea::placeholder {
+  font-size: 70%;
+  color: rgb(215, 64, 64);
+}
 .custom-container .controlls {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: right;
 }
