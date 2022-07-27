@@ -1,9 +1,9 @@
 "use strict";
 
 const textbox = document.querySelector(".textbox");
-const currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bottom: solid 3px; width: 3.7rem";
+const currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bottom: solid 3px";
 // const spaceStyle = "width: 3rem";
-const incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px; width: 3.7rem";
+const incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px";
 const correctStyle = "color: green;";
 const finishMessageStyle = "text-align: center;color: green; font-size: 2rem; margin: 2rem";
 const titleStyle = "padding-top: 4rem; padding-bottom: 4rem; font-family: sans-serif; font-weight: 900; color: rgb(112, 55, 64); font-size: 5rem;";
@@ -46,6 +46,19 @@ function textboxInit(level = 0, custom = false, customText) {
     // }
   });
   // textArr = tempTextArr;
+  if (mapObj.isBopomofo) {
+    textbox.classList.add("text-bopomofo");
+    textbox.classList.remove("text-roman");
+    // currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bottom: solid 3px; width: 3.7rem; text-align: center;";
+    // incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px; width: 3.7rem; text-align: center;";
+    // correctStyle = "color: green; width = 3.7rem; text-align-center";
+  } else {
+    textbox.classList.remove("text-bopomofo");
+    textbox.classList.add("text-roman");
+    // currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bottom: solid 3px; width: 2rem; text-align-center";
+    // incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px; width: 2rem; text-align-center";
+    // correctStyle = "color: green; width = 2rem";
+  }
   textboxEls = textbox.children;
   textboxEls[currentIndex].setAttribute("style", currentStyle);
   HightlightCurrentKey(currentChar);
@@ -75,7 +88,7 @@ function NextCharacter(isCorrect) {
         title.setAttribute("style", finishMessageStyle);
 
         mapObj.currentMap = bopomofoMap;
-        mapObj.mode = "bopomofo-mode";
+        mapObj.isBopomofo = true;
       }
     }
   } else {

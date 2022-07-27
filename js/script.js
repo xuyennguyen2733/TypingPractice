@@ -33,7 +33,7 @@ bopomofoBtn.checked = true;
 
 const mapObj = {
   currentMap: bopomofoMap,
-  mode: "bopomofo-mode",
+  isBopomofo: true,
 };
 // let currentMap = ;
 let currentLessonIndex;
@@ -156,10 +156,10 @@ function SaveCustomText() {
 }
 
 function SetPracticeMode() {
-  if (this.value === "bopomofo-mode") {
+  mapObj.isBopomofo = this.value === "bopomofo-mode";
+  if (mapObj.isBopomofo) {
     mapObj.currentMap = bopomofoMap;
   } else {
     mapObj.currentMap = romanMap;
   }
-  mapObj.mode = this.value;
 }
