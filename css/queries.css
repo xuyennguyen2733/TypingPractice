@@ -1,0 +1,129 @@
+/* rem and em do NOT depend on html font-size in media queries!
+Instead, 1rem = 1 em = 16px */
+
+/* BELOW 1344px (smaller desktops) */
+
+@media (max-height: 63em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+/* BELLOW 1200px (Landscape Tablets) */
+@media (max-height: 55em) {
+  html {
+    font-size: 50%;
+  }
+  .current {
+    /* background-color: rgb(255, 224, 236); */
+    background-image: linear-gradient(to top right, rgb(113, 248, 95), rgb(207, 255, 192), rgb(27, 198, 5));
+
+    box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 6px -8px 8px 18px rgb(45, 154, 35);
+  }
+}
+
+/* BELOW 944px (Tablets) */
+@media (max-height: 48em) {
+  html {
+    font-size: 45%;
+  }
+  .current {
+    /* background-color: rgb(255, 224, 236); */
+    background-image: linear-gradient(to top right, rgb(113, 248, 95), rgb(207, 255, 192), rgb(27, 198, 5));
+
+    box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 4px -6px 8px 15px rgb(45, 154, 35);
+  }
+}
+
+/* BELOW 944px (Tablets) */
+@media (max-height: 43em) {
+  html {
+    font-size: 40%;
+  }
+  .current {
+    /* background-color: rgb(255, 224, 236); */
+    background-image: linear-gradient(to top right, rgb(113, 248, 95), rgb(207, 255, 192), rgb(27, 198, 5));
+
+    box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 2px -4px 7px 13px rgb(45, 154, 35);
+  }
+}
+/* BELOW 944px (Tablets) */
+@media (max-height: 38em) {
+  html {
+    font-size: 35%;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    width: 120rem;
+    margin: auto;
+  }
+  .current {
+    /* background-color: rgb(255, 224, 236); */
+    background-image: linear-gradient(to top right, rgb(113, 248, 95), rgb(207, 255, 192), rgb(27, 198, 5));
+
+    box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 2px -3px 5px 11px rgb(45, 154, 35);
+  }
+
+  .level-title {
+    font-size: 3.5rem;
+    /* grid-column: 1 / 3;
+    grid-row: 1 / 2; */
+    padding: 1rem;
+    margin: 0;
+  }
+  .container {
+    grid-row: 2 / 3;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .controll-container {
+    margin: 2rem;
+    padding-right: 20rem;
+    /* grid-column: 2 / 3 ; */
+    grid-row: 2;
+    flex-direction: column;
+    width: auto;
+    height: 50rem;
+  }
+  .controll-container > button {
+    height: 8rem;
+  }
+  .current-text,
+  .incorrect-text {
+    border-bottom: solid 2px;
+  }
+}
+
+/* BELOW 944px (Tablets) */
+@media (max-height: 33em) {
+  .textbox {
+    height: 40rem;
+  }
+
+  .text-bopomofo {
+    padding: 1rem;
+    grid-template-columns: repeat(25, 3.5rem);
+    grid-template-rows: repeat(11, 3.5rem);
+  }
+
+  .keyboard div[class*="key"] {
+    font-size: 2rem;
+    font-weight: 700;
+    width: 6.3rem;
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.3rem;
+
+    border-radius: 0.3rem;
+  }
+
+  .current-text,
+  .incorrect-text {
+    border-bottom: solid 2px;
+  }
+}

@@ -68,7 +68,7 @@ textboxInit();
 function keydownFeedback(e) {
   try {
     const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
-    console.log(e.key, currentChar);
+    // console.log(e.key, currentChar);
     if (e.key === currentChar) {
       key.classList.add("correct");
       NextCharacter(true);
@@ -85,7 +85,9 @@ function keyupFeedback(e) {
     if (key) {
       key.classList.remove("correct");
       key.classList.remove("incorrect");
-      textboxEls[currentIndex].setAttribute("style", currentStyle);
+      textboxEls[currentIndex].classList.add("current-text");
+      textboxEls[currentIndex].classList.remove("correct-text");
+      textboxEls[currentIndex].classList.remove("incorrect-text");
     }
   } catch {}
 }
@@ -148,7 +150,7 @@ function SaveCustomText() {
     let isValid = true;
     const tempTextArr = [...customInput.value];
     tempTextArr.forEach((char) => {
-      console.log(mapObj.currentMap.get(char));
+      // console.log(mapObj.currentMap.get(char));
       if (!mapObj.currentMap.get(char)) {
         isValid = false;
       }
@@ -167,7 +169,7 @@ function SaveCustomText() {
 
 function SetPracticeMode() {
   mapObj.isBopomofo = this.value === "bopomofo-mode";
-  console.log(this.value);
+  // console.log(this.value);
   if (mapObj.isBopomofo) {
     mapObj.currentMap = bopomofoMap;
   } else {

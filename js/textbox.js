@@ -1,12 +1,12 @@
 "use strict";
 
 const textbox = document.querySelector(".textbox");
-const currentStyle = "color: black; font-weight: bold; font-size: 110%;border-bottom: solid 3px";
+const currentStyle = "";
 // const spaceStyle = "width: 3rem";
-const incorrectStyle = "color: red; font-weight: bold; font-size: 110%; border-bottom: solid 3px";
-const correctStyle = "color: green;";
-const finishMessageStyle = "text-align: center;color: green; font-size: 2rem; margin: 2rem";
-const titleStyle = "padding-top: 2rem; padding-bottom: 2rem; font-family: sans-serif; font-weight: 900; color: rgb(112, 55, 64); font-size: 5rem;";
+const incorrectStyle = "";
+const correctStyle = "";
+const finishMessageStyle = "";
+const titleStyle = "";
 let currentChar, currentIndex, textboxEls, textArr;
 
 function textboxInit(level = 0, custom = false, customText) {
@@ -26,7 +26,8 @@ function textboxInit(level = 0, custom = false, customText) {
   for (let i = 0; i < textArr.length; i += 25) {
     if (textArr[i] === " ") textArr.splice(i, 1);
   }
-  title.setAttribute("style", titleStyle);
+  title.classList.remove("finished-title");
+  title.classList.add("level-title");
   currentIndex = 0;
   currentChar = mapObj.currentMap.get(textArr[currentIndex]);
 
@@ -61,12 +62,17 @@ function textboxInit(level = 0, custom = false, customText) {
     // correctStyle = "color: green; width = 2rem";
   }
   textboxEls = textbox.children;
-  textboxEls[currentIndex].setAttribute("style", currentStyle);
+  textboxEls[currentIndex].classList.add("current-text");
+  textboxEls[currentIndex].classList.remove("correct-text");
+  textboxEls[currentIndex].classList.remove("incorrect-text");
   HightlightCurrentKey(currentChar);
 }
 function NextCharacter(isCorrect) {
   if (isCorrect) {
-    textboxEls[currentIndex].setAttribute("style", correctStyle);
+    // textboxEls[currentIndex].setAttribute("style", correctStyle);
+    textboxEls[currentIndex].classList.add("correct-text");
+    textboxEls[currentIndex].classList.remove("incorrect-text");
+    textboxEls[currentIndex].classList.remove("current-text");
     UnHightlightCurrentKey(currentChar);
     // if (currentIndex < textArr.length) currentIndex++;
     if (currentIndex < textArr.length) {
@@ -77,7 +83,10 @@ function NextCharacter(isCorrect) {
     }
     if (currentIndex < textArr.length) {
       currentChar = mapObj.currentMap.get(textArr[currentIndex]);
-      textboxEls[currentIndex].setAttribute("style", currentStyle);
+      // textboxEls[currentIndex].setAttribute("style", currentStyle);
+      textboxEls[currentIndex].classList.add("current-text");
+      textboxEls[currentIndex].classList.remove("correct-text");
+      textboxEls[currentIndex].classList.remove("incorrect-text");
       HightlightCurrentKey(currentChar);
     } else {
       currentLessonIndex++;
@@ -87,13 +96,18 @@ function NextCharacter(isCorrect) {
       } else {
         title.textContent =
           "Finished! Click 'Again' try again, 'Previous Level' to get back to the previous lesson, or 'Customize Text' to Create a new custom lesson.";
-        title.setAttribute("style", finishMessageStyle);
+        title.classList.remove("level-title");
+        title.classList.add("finished-title");
+        // title.setAttribute("style", finishMessageStyle);
 
         // mapObj.currentMap = bopomofoMap;
         // mapObj.isBopomofo = true;
       }
     }
   } else {
-    textboxEls[currentIndex].setAttribute("style", incorrectStyle);
+    // textboxEls[currentIndex].setAttribute("style", incorrectStyle);
+    textboxEls[currentIndex].classList.add("incorrect-text");
+    textboxEls[currentIndex].classList.remove("current-text");
+    textboxEls[currentIndex].classList.remove("correct-text");
   }
 }

@@ -18,6 +18,12 @@ body {
 
 .level-title {
   font-family: sans-serif;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-family: sans-serif;
+  font-weight: 900;
+  color: rgb(112, 55, 64);
+  font-size: 5rem;
 }
 
 .container {
@@ -259,4 +265,29 @@ button:active {
 
 .input-radio input {
   margin-right: 1rem;
+}
+
+.current-text {
+  color: black;
+  font-weight: bold;
+  font-size: 110%;
+  border-bottom: solid 3px;
+}
+
+.incorrect-text {
+  color: red;
+  font-weight: bold;
+  font-size: 110%;
+  border-bottom: solid 3px;
+}
+
+.finished-title {
+  text-align: center;
+  color: green;
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+.correct-text {
+  color: green;
 }
