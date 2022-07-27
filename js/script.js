@@ -93,10 +93,11 @@ function keyupFeedback(e) {
 function ToPreviousLesson(e) {
   e.preventDefault();
   if (isCustomed) {
+    mapObj.currentMap = bopomofoMap;
+    UnHightlightCurrentKey(currentChar);
+    mapObj.isBopomofo = true;
     textboxInit(0);
   } else if (currentLessonIndex - 1 >= 0 && currentLessonIndex < lessons.length) {
-    mapObj.currentMap = bopomofoMap;
-    mapObj.isBopomofo = false;
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex - 1);
   }
@@ -113,6 +114,7 @@ function ToNextLesson(e) {
 function ResetLesson(e) {
   e.preventDefault();
   if (isCustomed) {
+    UnHightlightCurrentKey(currentChar);
     textboxInit("custom", true, textbox.textContent);
   } else {
     if (isNaN(currentLessonIndex) || currentLessonIndex < 0 || currentLessonIndex >= lessons.length) currentLessonIndex = 0;
