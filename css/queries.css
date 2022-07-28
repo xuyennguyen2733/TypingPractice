@@ -106,7 +106,7 @@ Instead, 1rem = 1 em = 16px */
   .text-bopomofo {
     padding: 1rem;
     grid-template-columns: repeat(25, 3.5rem);
-    grid-template-rows: repeat(11, 3.5rem);
+    grid-template-rows: repeat(10, 3.5rem);
   }
 
   .keyboard div[class*="key"] {

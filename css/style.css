@@ -112,7 +112,7 @@ button:active {
   padding-bottom: 2rem;
   display: grid;
   grid-template-columns: repeat(25, 3.7rem);
-  grid-template-rows: repeat(11, 3.7rem);
+  grid-template-rows: repeat(10, 3.7rem);
   justify-content: center;
   align-content: center;
   justify-items: center;

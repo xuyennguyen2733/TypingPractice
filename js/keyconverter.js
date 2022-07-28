@@ -1,4 +1,22 @@
 "use strict";
+const roman = [..."`1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./ "];
+const bopomofo = [..."`ㄅㄉˇˋㄓˊ˙ㄚㄞㄢㄦ=ㄆㄊㄍㄐㄔㄗㄧㄛㄟㄣ【】ㄇㄋㄎㄑㄕㄘㄨㄜㄠㄤ「ㄈㄌㄏㄒㄖㄙㄩㄝㄡㄥ "];
+const bopomofoToRoman = new Map();
+const romanToRoman = new Map();
+const romanToBopomofo = new Map();
+const keyClassMap = new Map();
+
+function KeysInit() {
+  roman.forEach((element, index) => {
+    bopomofoToRoman.set(bopomofo[index], element);
+    romanToBopomofo.set(element, bopomofo[index]);
+    romanToRoman.set(element, element);
+    if (element >= "a" && element <= "z") {
+      romanToRoman.set(element.toUpperCase(), element.toUpperCase());
+    }
+    keyClassMap.set(element, index);
+  });
+}
 
 // This function converts each roman character in the input string
 // to its bopomofo keyboard equivalence

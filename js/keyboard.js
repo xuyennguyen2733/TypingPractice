@@ -1,22 +1,6 @@
 "use strict";
 
-const roman = [..."`1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./ "];
-const bopomofo = [..."`ㄅㄉˇˋㄓˊ˙ㄚㄞㄢㄦ=ㄆㄊㄍㄐㄔㄗㄧㄛㄟㄣ【】ㄇㄋㄎㄑㄕㄘㄨㄜㄠㄤ「ㄈㄌㄏㄒㄖㄙㄩㄝㄡㄥ "];
-const bopomofoToRoman = new Map();
-const romanToRoman = new Map();
-const romanToBopomofo = new Map();
-const keyClassMap = new Map();
-
-roman.forEach((element, index) => {
-  bopomofoToRoman.set(bopomofo[index], element);
-  romanToBopomofo.set(element, bopomofo[index]);
-  romanToRoman.set(element, element);
-  if (element >= "a" && element <= "z") {
-    romanToRoman.set(element.toUpperCase(), element.toUpperCase());
-  }
-  keyClassMap.set(element, index);
-});
-
+KeysInit();
 // const str = [..."12345 67890 1234567 12345 678901qaz 2wsx 3edc 4rfv".toLowerCase()];
 // let newStr = "";
 // for (let i = 0; i < str.length; i++) {
