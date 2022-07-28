@@ -66,8 +66,13 @@ CreateKeyElement(46, 4);
 textboxInit();
 
 function keydownFeedback(e) {
+  if (e.keyCode === 32 && e.target === document.body) {
+    e.preventDefault();
+  }
   try {
-    const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
+    const key = keyboard.querySelector(
+      `.key-${keyClassMap.get(e.key.toLowerCase())}`
+    );
     // console.log(e.key, currentChar);
     if (e.key === currentChar) {
       key.classList.add("correct");
@@ -81,7 +86,9 @@ function keydownFeedback(e) {
 
 function keyupFeedback(e) {
   try {
-    const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
+    const key = keyboard.querySelector(
+      `.key-${keyClassMap.get(e.key.toLowerCase())}`
+    );
     if (key) {
       key.classList.remove("correct");
       key.classList.remove("incorrect");
@@ -99,7 +106,10 @@ function ToPreviousLesson(e) {
     UnHightlightCurrentKey(currentChar);
     mapObj.isBopomofo = true;
     textboxInit(0);
-  } else if (currentLessonIndex - 1 >= 0 && currentLessonIndex < lessons.length) {
+  } else if (
+    currentLessonIndex - 1 >= 0 &&
+    currentLessonIndex < lessons.length
+  ) {
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex - 1);
   }
@@ -119,7 +129,12 @@ function ResetLesson(e) {
     UnHightlightCurrentKey(currentChar);
     textboxInit("custom", true, textbox.textContent);
   } else {
-    if (isNaN(currentLessonIndex) || currentLessonIndex < 0 || currentLessonIndex >= lessons.length) currentLessonIndex = 0;
+    if (
+      isNaN(currentLessonIndex) ||
+      currentLessonIndex < 0 ||
+      currentLessonIndex >= lessons.length
+    )
+      currentLessonIndex = 0;
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex);
   }
