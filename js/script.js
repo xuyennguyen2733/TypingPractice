@@ -2,7 +2,7 @@
 
 document.addEventListener("keydown", keydownFeedback);
 document.addEventListener("keyup", keyupFeedback);
-
+document.addEventListener("click", RemoveFinishedMessage);
 const body = document.querySelector("body");
 const keyboard = body.querySelector(".keyboard");
 const prevBtn = body.querySelector(".btn-previous");
@@ -15,21 +15,20 @@ const overlay = body.querySelector(".overlay");
 const title = body.querySelector(".level-title");
 const customContainer = body.querySelector(".custom-container");
 const customInput = body.querySelector(".custom-container .custom-text");
-const bopomofoBtn = document.querySelector("#bopomofo-mode");
-const romanBtn = document.querySelector("#roman-mode");
+const bopomofoCheckbox = document.querySelector("#bopomofo-mode");
+// const romanBtn = document.querySelector("#roman-mode");
+const finishedMessage = document.querySelector(".finished-message");
 
 prevBtn.addEventListener("click", ToPreviousLesson);
 nextBtn.addEventListener("click", ToNextLesson);
 againBtn.addEventListener("click", ResetLesson);
-customizeBtn.addEventListener("click", SetCustomText);
-// customContainer.addEventListener("click", CancelCustomText);
+customizeBtn.addEventListener("click", CustomizeButtonClicked);
+// bopomofoCheckbox.addEventListener("click", SetPracticeMode);
 cancelBtn.addEventListener("click", CancelCustomText);
 saveBtn.addEventListener("click", SaveCustomText);
 overlay.addEventListener("click", CancelCustomText);
-bopomofoBtn.addEventListener("click", SetPracticeMode);
-romanBtn.addEventListener("click", SetPracticeMode);
 
-bopomofoBtn.checked = true;
+bopomofoCheckbox.checked = true;
 
 const mapObj = {
   currentMap: bopomofoToRoman,
@@ -69,10 +68,9 @@ function keydownFeedback(e) {
   if (e.keyCode === 32 && e.target === document.body) {
     e.preventDefault();
   }
-  try {
-    const key = keyboard.querySelector(
-      `.key-${keyClassMap.get(e.key.toLowerCase())}`
-    );
+
+  if (currentIndex < textArr.length) {
+    const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
     // console.log(e.key, currentChar);
     if (e.key === currentChar) {
       key.classList.add("correct");
@@ -81,22 +79,20 @@ function keydownFeedback(e) {
       key.classList.add("incorrect");
       NextCharacter(false);
     }
-  } catch {}
+  }
 }
 
 function keyupFeedback(e) {
-  try {
-    const key = keyboard.querySelector(
-      `.key-${keyClassMap.get(e.key.toLowerCase())}`
-    );
-    if (key) {
-      key.classList.remove("correct");
-      key.classList.remove("incorrect");
+  const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
+  if (key) {
+    key.classList.remove("correct");
+    key.classList.remove("incorrect");
+    if (currentIndex < textArr.length) {
       textboxEls[currentIndex].classList.add("current-text");
-      textboxEls[currentIndex].classList.remove("correct-text");
-      textboxEls[currentIndex].classList.remove("incorrect-text");
     }
-  } catch {}
+    textboxEls[currentIndex].classList.remove("correct-text");
+    textboxEls[currentIndex].classList.remove("incorrect-text");
+  }
 }
 
 function ToPreviousLesson(e) {
@@ -106,12 +102,11 @@ function ToPreviousLesson(e) {
     UnHightlightCurrentKey(currentChar);
     mapObj.isBopomofo = true;
     textboxInit(0);
-  } else if (
-    currentLessonIndex - 1 >= 0 &&
-    currentLessonIndex < lessons.length
-  ) {
+    ResetTimer();
+  } else if (currentLessonIndex - 1 >= 0 && currentLessonIndex < lessons.length) {
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex - 1);
+    ResetTimer();
   }
   this.blur();
 }
@@ -120,32 +115,32 @@ function ToNextLesson(e) {
   if (currentLessonIndex + 1 < lessons.length && currentLessonIndex >= 0) {
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex + 1);
+    ResetTimer();
   }
   this.blur();
 }
 function ResetLesson(e) {
   e.preventDefault();
+
   if (isCustomed) {
     UnHightlightCurrentKey(currentChar);
     textboxInit("custom", true, textbox.textContent);
   } else {
-    if (
-      isNaN(currentLessonIndex) ||
-      currentLessonIndex < 0 ||
-      currentLessonIndex >= lessons.length
-    )
-      currentLessonIndex = 0;
+    if (isNaN(currentLessonIndex) || currentLessonIndex < 0 || currentLessonIndex >= lessons.length) currentLessonIndex = 0;
     UnHightlightCurrentKey(currentChar);
     textboxInit(currentLessonIndex);
   }
+  ResetTimer();
   this.blur();
 }
-function SetCustomText(e) {
+function CustomizeButtonClicked(e) {
   e.preventDefault();
+  StopTiming();
   customContainer.classList.remove("hidden");
   overlay.classList.remove("hidden");
   document.removeEventListener("keydown", keydownFeedback);
   document.removeEventListener("keyup", keyupFeedback);
+  document.removeEventListener("keypress", StartTiming);
 }
 
 function CancelCustomText() {
@@ -153,9 +148,10 @@ function CancelCustomText() {
   overlay.classList.add("hidden");
   document.addEventListener("keydown", keydownFeedback);
   document.addEventListener("keyup", keyupFeedback);
+  document.addEventListener("keypress", StartTiming);
   customInput.placeholder = "";
   customInput.value = "";
-  bopomofoBtn.checked = true;
+  bopomofoCheckbox.checked = true;
 }
 
 function SaveCustomText() {
@@ -164,16 +160,19 @@ function SaveCustomText() {
   } else {
     let isValid = true;
     const tempTextArr = [...customInput.value];
+    const chosenMap = bopomofoCheckbox.checked ? bopomofoToRoman : romanToRoman;
     tempTextArr.forEach((char) => {
       // console.log(mapObj.currentMap.get(char));
-      if (!mapObj.currentMap.get(char)) {
+      if (!chosenMap.get(char)) {
         isValid = false;
       }
     });
     if (isValid) {
+      SetPracticeMode();
       UnHightlightCurrentKey(currentChar);
       textboxInit("custom", true, customInput.value);
       CancelCustomText();
+      ResetTimer();
     } else {
       customInput.value = "";
       customInput.placeholder = "Errors mapping keys. Check the practice mode.";
@@ -183,11 +182,15 @@ function SaveCustomText() {
 }
 
 function SetPracticeMode() {
-  mapObj.isBopomofo = this.value === "bopomofo-mode";
+  mapObj.isBopomofo = bopomofoCheckbox.checked;
   // console.log(this.value);
   if (mapObj.isBopomofo) {
     mapObj.currentMap = bopomofoToRoman;
   } else {
     mapObj.currentMap = romanToRoman;
   }
+}
+
+function RemoveFinishedMessage() {
+  finishedMessage.classList.add("hidden");
 }

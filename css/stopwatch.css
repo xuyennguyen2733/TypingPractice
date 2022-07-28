@@ -1,0 +1,45 @@
+/* Mixin's */
+@mixin transition {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+@mixin corners($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  -khtml-border-radius: $radius;
+}
+
+.stopwatch {
+  top: 0;
+  right: 0;
+  position: absolute;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-right: 5rem;
+  color: black;
+  text-align: center;
+  /* align-content: center; */
+}
+
+.stopwatch h1 {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.stopwatch #seconds,
+.stopwatch #minutes,
+.stopwatch #hours {
+  font-size: 2em;
+}
+
+/* .btn-start,
+.btn-stop,
+.btn-reset {
+  background-color: rgb(202, 139, 149);
+  background-image: linear-gradient(to top right, rgb(202, 139, 149), rgb(202, 139, 149), rgb(166, 104, 115));
+  border: solid rgb(220, 182, 188) 2px;
+} */

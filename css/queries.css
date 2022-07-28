@@ -95,6 +95,13 @@ Instead, 1rem = 1 em = 16px */
   .incorrect-text {
     border-bottom: solid 2px;
   }
+
+  .stopwatch {
+    display: flex;
+    width: 21rem;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 /* BELOW 944px (Tablets) */
