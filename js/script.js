@@ -32,7 +32,7 @@ romanBtn.addEventListener("click", SetPracticeMode);
 bopomofoBtn.checked = true;
 
 const mapObj = {
-  currentMap: bopomofoMap,
+  currentMap: bopomofoToRoman,
   isBopomofo: true,
 };
 // let currentMap = ;
@@ -95,7 +95,7 @@ function keyupFeedback(e) {
 function ToPreviousLesson(e) {
   e.preventDefault();
   if (isCustomed) {
-    mapObj.currentMap = bopomofoMap;
+    mapObj.currentMap = bopomofoToRoman;
     UnHightlightCurrentKey(currentChar);
     mapObj.isBopomofo = true;
     textboxInit(0);
@@ -171,8 +171,8 @@ function SetPracticeMode() {
   mapObj.isBopomofo = this.value === "bopomofo-mode";
   // console.log(this.value);
   if (mapObj.isBopomofo) {
-    mapObj.currentMap = bopomofoMap;
+    mapObj.currentMap = bopomofoToRoman;
   } else {
-    mapObj.currentMap = romanMap;
+    mapObj.currentMap = romanToRoman;
   }
 }

@@ -2,15 +2,17 @@
 
 const roman = [..."`1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./ "];
 const bopomofo = [..."`ㄅㄉˇˋㄓˊ˙ㄚㄞㄢㄦ=ㄆㄊㄍㄐㄔㄗㄧㄛㄟㄣ【】ㄇㄋㄎㄑㄕㄘㄨㄜㄠㄤ「ㄈㄌㄏㄒㄖㄙㄩㄝㄡㄥ "];
-const bopomofoMap = new Map();
-const romanMap = new Map();
+const bopomofoToRoman = new Map();
+const romanToRoman = new Map();
+const romanToBopomofo = new Map();
 const keyClassMap = new Map();
 
 roman.forEach((element, index) => {
-  bopomofoMap.set(bopomofo[index], element);
-  romanMap.set(element, element);
+  bopomofoToRoman.set(bopomofo[index], element);
+  romanToBopomofo.set(element, bopomofo[index]);
+  romanToRoman.set(element, element);
   if (element >= "a" && element <= "z") {
-    romanMap.set(element.toUpperCase(), element.toUpperCase());
+    romanToRoman.set(element.toUpperCase(), element.toUpperCase());
   }
   keyClassMap.set(element, index);
 });
