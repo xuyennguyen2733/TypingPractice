@@ -37,14 +37,12 @@ body {
 }
 
 .controll-container {
-  /* position: fixed; */
   bottom: 0;
   display: flex;
   justify-content: space-around;
   width: 100rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  /* margin-top: 5rem; */
 }
 
 button:hover {
@@ -65,12 +63,10 @@ button:active {
 }
 
 .btn-previous {
-  /* background-color: rgb(230, 190, 88); */
   background-image: linear-gradient(to top right, rgb(230, 190, 88), rgb(230, 190, 88), rgb(207, 157, 33));
   border: solid rgb(237, 206, 127) 2px;
 }
 .btn-next {
-  /* background-color: rgb(16, 217, 30); */
   background-image: linear-gradient(to top right, rgb(16, 217, 30), rgb(16, 217, 30), rgb(11, 161, 21));
   border: solid rgb(139, 255, 149) 2px;
 }
@@ -83,21 +79,15 @@ button:active {
 
 .keyboard {
   display: grid;
-  /* margin-left: 20px; */
-  /* margin-right: 20px; */
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   padding: auto;
-  /* background-color: rgb(191, 116, 128); */
   background-image: linear-gradient(to top right, rgb(165, 97, 108), rgb(218, 174, 181), rgb(165, 97, 108));
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   box-shadow: inset 1px 0px 2px 2px rgb(144, 87, 96), inset -1px 0px 2px 2px rgb(144, 87, 96);
 }
 
-/* .textbox span {
-  display: inline-block;
-} */
 .textbox-container {
   position: relative;
   border-top-left-radius: 10%;
@@ -107,17 +97,48 @@ button:active {
   border: solid rgb(105, 60, 66) 2px;
 }
 
+.finished-message {
+  background-color: rgba(1, 1, 1, 0.775);
+  backdrop-filter: blur(3px);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: pink;
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.finished-message .close {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  background-color: pink;
+  color: rgb(101, 47, 57);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  border: solid 0.3rem rgb(101, 47, 57);
+}
+
+.finished-message .close:hover {
+  cursor: pointer;
+}
+
 .textbox {
   height: 45rem;
-  /* background-color: rgb(255, 227, 232); */
-
-  /* padding: 3rem; */
-
   font-size: 3.2rem;
 }
 
 .text-bopomofo {
-  /* font-weight: 600; */
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -131,18 +152,9 @@ button:active {
 
 .text-roman {
   padding: 3rem;
-  /* height: 3.7rem; */
-  /* line-height: 5rem; */
 }
 .text-bopomofo span {
   width: 3.7rem;
-  /* background-color: pink; */
-  /* padding: 3rem; */
-  /* position: relative; */
-  /* display: inline-block; */
-  /* min-height: 45.23px; */
-  /* height: 3.7rem;
-  width: 3rem; */
 }
 
 [class*="row"] {
@@ -172,27 +184,22 @@ button:active {
 }
 
 .neutral {
-  /* background-color: pink; */
   background-image: linear-gradient(to top right, pink, pink, rgb(232, 166, 176));
   box-shadow: 2px 2px 2px 2px rgba(90, 49, 49, 0.632), inset 1px 1px 5px 3px rgb(224, 168, 177);
 }
 .current {
-  /* background-color: rgb(255, 224, 236); */
   background-image: linear-gradient(to top right, rgb(113, 248, 95), rgb(207, 255, 192), rgb(27, 198, 5));
 
   box-shadow: 3px 2px 5px 2.5px rgba(90, 49, 49, 0.632), inset 8px -10px 15px 20px rgb(45, 154, 35);
 }
 
 .incorrect {
-  /* background-color: rgb(255, 0, 0); */
   background-image: linear-gradient(to top right, red, rgb(255, 55, 55), rgb(216, 10, 10));
   box-shadow: 1px 1px 1px 1px rgba(49, 27, 27, 0.693);
 }
 .correct {
-  /* background-color: pink; */
   filter: brightness(90%);
   background-image: linear-gradient(to top right, pink, pink, rgb(232, 166, 176));
-  /* box-shadow: 2px 2px 2px 2px rgba(90, 49, 49, 0.632), inset 1px 1px 5px 3px rgb(224, 168, 177); */
 }
 
 .hidden {
@@ -244,7 +251,6 @@ button:active {
   color: rgb(215, 64, 64);
 }
 .custom-container .controlls {
-  /* width: 100%; */
   display: flex;
   justify-content: right;
 }
@@ -290,23 +296,6 @@ button:active {
   font-weight: bold;
   font-size: 110%;
   border-bottom: solid 3px;
-}
-
-.finished-message {
-  /* border-top-left-radius: 10%;
-  border-top-right-radius: 10%; */
-  background-color: rgba(255, 252, 252, 0.5);
-  backdrop-filter: blur(3px);
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: green;
-  font-size: 3rem;
-  font-weight: 700;
-  height: 100%;
-  width: 100%;
 }
 
 .correct-text {

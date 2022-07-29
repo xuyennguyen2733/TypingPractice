@@ -1,6 +1,5 @@
 "use strict";
 
-// window.onload = function () {
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
@@ -56,4 +55,3 @@ function startTimer() {
     appendHours.innerHTML = hours;
   }
 }
-// };

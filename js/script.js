@@ -2,7 +2,7 @@
 
 document.addEventListener("keydown", keydownFeedback);
 document.addEventListener("keyup", keyupFeedback);
-document.addEventListener("click", RemoveFinishedMessage);
+window.addEventListener("blur", OnBlur);
 const body = document.querySelector("body");
 const keyboard = body.querySelector(".keyboard");
 const prevBtn = body.querySelector(".btn-previous");
@@ -16,17 +16,17 @@ const title = body.querySelector(".level-title");
 const customContainer = body.querySelector(".custom-container");
 const customInput = body.querySelector(".custom-container .custom-text");
 const bopomofoCheckbox = document.querySelector("#bopomofo-mode");
-// const romanBtn = document.querySelector("#roman-mode");
 const finishedMessage = document.querySelector(".finished-message");
+const closeFinishedMessageBtn = finishedMessage.querySelector(".close");
 
 prevBtn.addEventListener("click", ToPreviousLesson);
 nextBtn.addEventListener("click", ToNextLesson);
 againBtn.addEventListener("click", ResetLesson);
-customizeBtn.addEventListener("click", CustomizeButtonClicked);
-// bopomofoCheckbox.addEventListener("click", SetPracticeMode);
-cancelBtn.addEventListener("click", CancelCustomText);
-saveBtn.addEventListener("click", SaveCustomText);
-overlay.addEventListener("click", CancelCustomText);
+customizeBtn.addEventListener("click", CustomizeLesson);
+cancelBtn.addEventListener("click", CancelCustomizedLesson);
+saveBtn.addEventListener("click", SaveCustomizedLesson);
+overlay.addEventListener("click", CancelCustomizedLesson);
+closeFinishedMessageBtn.addEventListener("click", RemoveFinishedMessage);
 
 bopomofoCheckbox.checked = true;
 
@@ -34,7 +34,6 @@ const mapObj = {
   currentMap: bopomofoToRoman,
   isBopomofo: true,
 };
-// let currentMap = ;
 let currentLessonIndex;
 let isCustomed;
 
@@ -44,7 +43,6 @@ for (let i = 0; i < 5; i++) {
   keyboard.appendChild(row);
 }
 
-// Create first row's keys
 for (let i = 0; i < 13; i++) {
   CreateKeyElement(i, 0);
 }
@@ -71,7 +69,6 @@ function keydownFeedback(e) {
 
   if (currentIndex < textArr.length) {
     const key = keyboard.querySelector(`.key-${keyClassMap.get(e.key.toLowerCase())}`);
-    // console.log(e.key, currentChar);
     if (e.key === currentChar) {
       key.classList.add("correct");
       NextCharacter(true);
@@ -89,9 +86,9 @@ function keyupFeedback(e) {
     key.classList.remove("incorrect");
     if (currentIndex < textArr.length) {
       textboxEls[currentIndex].classList.add("current-text");
+      textboxEls[currentIndex].classList.remove("correct-text");
+      textboxEls[currentIndex].classList.remove("incorrect-text");
     }
-    textboxEls[currentIndex].classList.remove("correct-text");
-    textboxEls[currentIndex].classList.remove("incorrect-text");
   }
 }
 
@@ -133,7 +130,7 @@ function ResetLesson(e) {
   ResetTimer();
   this.blur();
 }
-function CustomizeButtonClicked(e) {
+function CustomizeLesson(e) {
   e.preventDefault();
   StopTiming();
   customContainer.classList.remove("hidden");
@@ -143,7 +140,7 @@ function CustomizeButtonClicked(e) {
   document.removeEventListener("keypress", StartTiming);
 }
 
-function CancelCustomText() {
+function CancelCustomizedLesson() {
   customContainer.classList.add("hidden");
   overlay.classList.add("hidden");
   document.addEventListener("keydown", keydownFeedback);
@@ -154,7 +151,7 @@ function CancelCustomText() {
   bopomofoCheckbox.checked = true;
 }
 
-function SaveCustomText() {
+function SaveCustomizedLesson() {
   if (customInput.value.length <= 0) {
     customInput.placeholder = "Text cannot be empty!";
   } else {
@@ -162,7 +159,6 @@ function SaveCustomText() {
     const tempTextArr = [...customInput.value];
     const chosenMap = bopomofoCheckbox.checked ? bopomofoToRoman : romanToRoman;
     tempTextArr.forEach((char) => {
-      // console.log(mapObj.currentMap.get(char));
       if (!chosenMap.get(char)) {
         isValid = false;
       }
@@ -171,19 +167,17 @@ function SaveCustomText() {
       SetPracticeMode();
       UnHightlightCurrentKey(currentChar);
       textboxInit("custom", true, customInput.value);
-      CancelCustomText();
+      CancelCustomizedLesson();
       ResetTimer();
     } else {
       customInput.value = "";
       customInput.placeholder = "Errors mapping keys. Check the practice mode.";
-      // throw "Error mapping keys. Check the practice mode again";
     }
   }
 }
 
 function SetPracticeMode() {
   mapObj.isBopomofo = bopomofoCheckbox.checked;
-  // console.log(this.value);
   if (mapObj.isBopomofo) {
     mapObj.currentMap = bopomofoToRoman;
   } else {
@@ -193,4 +187,18 @@ function SetPracticeMode() {
 
 function RemoveFinishedMessage() {
   finishedMessage.classList.add("hidden");
+}
+
+function ToNextLessonOnEnter(e) {
+  if (e.keyCode === 13) {
+    ToNextLesson(e);
+    document.removeEventListener("keypress", ToNextLessonOnEnter);
+  }
+}
+
+function OnBlur() {
+  if (currentIndex < textArr.length) {
+    StopTiming();
+    document.addEventListener("keypress", StartTiming);
+  }
 }

@@ -9,11 +9,11 @@ const titleStyle = "";
 let currentChar, currentIndex, textboxEls, textArr;
 
 function textboxInit(level = 0, custom = false, customText) {
+  finishedMessage.classList.add("hidden");
   currentLessonIndex = level;
   isCustomed = custom;
   if (isCustomed) {
     customText = customText.replaceAll("\n", " ");
-    // console.log(customText);
     textArr = [...customText];
 
     title.textContent = `Custom Practice`;
@@ -29,7 +29,6 @@ function textboxInit(level = 0, custom = false, customText) {
   currentChar = mapObj.currentMap.get(textArr[currentIndex]);
 
   textbox.innerHTML = "";
-  // RemoveFinishedMessage();
 
   textArr.forEach((char, index) => {
     const charEl = document.createElement("span");
@@ -67,24 +66,20 @@ function NextCharacter(isCorrect) {
         textboxEls[currentIndex].classList.remove("incorrect-text");
         HightlightCurrentKey(currentChar);
       } else {
-        // currentLessonIndex++;
-        // if (!isCustomed && currentLessonIndex < lessons.length) {
         document.removeEventListener("keypress", StartTiming);
         UnHightlightCurrentKey(currentChar);
 
         finishedMessage.classList.remove("hidden");
-        // textbox.innerHTML = "";
 
         if (!isCustomed) {
-          finishedMessage.textContent = `Level ${currentLessonIndex + 1} Finished!`;
-
-          // textboxInit(currentLessonIndex);
+          finishedMessage.querySelector(".message").textContent = `Level ${
+            currentLessonIndex + 1
+          } Finished! Press 'Enter' to proceed to the next level.`;
+          document.addEventListener("keypress", ToNextLessonOnEnter);
         } else {
-          finishedMessage.textContent =
-            "Finished! Click 'Again' try again, 'Previous Level' to get back to the previous lesson, or 'Customize Text' to Create a new custom lesson.";
-          // finishMessage.classList.remove("hidden");
+          finishedMessage.querySelector(".message").textContent =
+            "Finished! Click 'Again' to try again, or click 'Previous Level' to get back to Level 1.";
         }
-
         StopTiming();
       }
     } else {

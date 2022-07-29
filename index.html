@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
     <meta
       name="description"
       content="Omnifood is an AI-powered food subscription that will make you eat healthy again, 365 days per year. It's tailored to your personal tastes and nutritional needs."
@@ -19,13 +18,10 @@
     <div class="custom-container hidden">
       <textarea type="text" class="custom-text"></textarea>
       <div class="controlls">
-        <!-- <iput type="radio" id="bopomofo-mode" name="practice-mode" class="mode" value="1" />
-        <iput type="radio" id="roman-mode" name="practice-mode" class="mode" value="0" /> -->
         <div class="input-radio">
           <input type="checkbox" id="bopomofo-mode" value="bopomofo-mode" name="mode" />
           <label for="bopomofo-mode">Bopomofo</label>
         </div>
-        <!-- <div class="input-radio"><input type="radio" id="roman-mode" value="roman-mode" name="mode" /> <label for="roman-mode">Roman</label></div> -->
         <button class="btn-cancel">Cancel</button>
         <button class="btn-save">Save</button>
       </div>
@@ -39,7 +35,10 @@
         </div>
       </div>
       <div class="textbox-container">
-        <div class="finished-message hidden"></div>
+        <div class="finished-message">
+          <div class="close">✕</div>
+          <div class="message"></div>
+        </div>
         <div class="textbox"></div>
       </div>
       <div class="keyboard"></div>

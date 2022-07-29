@@ -1,19 +1,13 @@
 "use strict";
 
 const lesson01 = [...GenerateLessonBasic(RomanToBopomofo("as"))];
-// [
-//   ..."ㄇㄇㄇㄇ ㄇㄇㄇㄇ ㄇㄇㄇㄇ ㄇㄇㄇㄇ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄋㄋㄋㄋ ㄋㄋㄋㄋ ㄋㄋㄋㄋ ㄋㄋㄋㄋ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄇㄇㄇㄇ ㄋㄋㄋㄋ ㄇㄇㄋㄋ ㄇㄇㄋㄋ ㄇㄇㄋㄋ ㄇㄇㄋㄋ ㄇㄇㄋㄋ ㄋㄋㄇㄇ ㄋㄋㄇㄇ ㄋㄋㄇㄇ ㄋㄋㄇㄇ ㄋㄋㄇㄇ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄇㄋㄇㄋ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ㄋㄇㄋㄇ ",
-// ];
 const lesson02 = [...GenerateLessonBasic(RomanToBopomofo("df"))];
 const lesson03 = [...GenerateLessonBasic(RomanToBopomofo("gh"))];
 const lesson04 = [...GenerateLessonBasic(RomanToBopomofo("jk"))];
 const lesson05 = [...GenerateLessonBasic(RomanToBopomofo("l;"))];
-
 const lesson06 = [...GenerateLesson(RomanToBopomofo("asdfghjkl;"))];
 const lesson07 = [...GenerateLessonBasic(RomanToBopomofo("qw"))];
-
 const lesson08 = [...GenerateLessonBasic(RomanToBopomofo("er"))];
-
 const lesson09 = [...GenerateLessonBasic(RomanToBopomofo("ty"))];
 const lesson10 = [...GenerateLessonBasic(RomanToBopomofo("ui"))];
 const lesson11 = [...GenerateLessonBasic(RomanToBopomofo("op"))];
