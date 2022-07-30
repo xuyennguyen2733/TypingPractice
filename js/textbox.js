@@ -19,7 +19,19 @@ function textboxInit(level = 0, custom = false, customText) {
     title.textContent = `Custom Practice`;
   } else {
     title.textContent = `Level ${currentLessonIndex + 1}`;
-    textArr = lessons[currentLessonIndex];
+    switch (currentLessonIndex) {
+      case 5:
+      case 11:
+      case 16:
+      case 23:
+      case 24:
+      case 25:
+      case 26:
+        textArr = lessons[currentLessonIndex]();
+        break;
+      default:
+        textArr = lessons[currentLessonIndex];
+    }
   }
   for (let i = 0; i < textArr.length; i += 25) {
     if (textArr[i] === " ") textArr.splice(i, 1);
@@ -56,7 +68,10 @@ function NextCharacter(isCorrect) {
       textboxEls[currentIndex].classList.remove("current-text");
       UnHightlightCurrentKey(currentChar);
       currentIndex++;
-      if (currentIndex % 25 === 24 && mapObj.currentMap.get(textArr[currentIndex]) === " ") {
+      if (
+        currentIndex % 25 === 24 &&
+        mapObj.currentMap.get(textArr[currentIndex]) === " "
+      ) {
         currentIndex++;
       }
       if (currentIndex < textArr.length) {

@@ -5,29 +5,43 @@ const lesson02 = [...GenerateLessonBasic(RomanToBopomofo("df"))];
 const lesson03 = [...GenerateLessonBasic(RomanToBopomofo("gh"))];
 const lesson04 = [...GenerateLessonBasic(RomanToBopomofo("jk"))];
 const lesson05 = [...GenerateLessonBasic(RomanToBopomofo("l;"))];
-const lesson06 = [...GenerateLesson(RomanToBopomofo("asdfghjkl;"))];
+const lesson06 = () => [...GenerateLessonRandom(RomanToBopomofo("asdfghjkl;"))];
 const lesson07 = [...GenerateLessonBasic(RomanToBopomofo("qw"))];
 const lesson08 = [...GenerateLessonBasic(RomanToBopomofo("er"))];
 const lesson09 = [...GenerateLessonBasic(RomanToBopomofo("ty"))];
 const lesson10 = [...GenerateLessonBasic(RomanToBopomofo("ui"))];
 const lesson11 = [...GenerateLessonBasic(RomanToBopomofo("op"))];
-const lesson12 = [...GenerateLesson(RomanToBopomofo("qwertyuiop"))];
+const lesson12 = () => [...GenerateLessonRandom(RomanToBopomofo("qwertyuiop"))];
 const lesson = [...GenerateLessonBasic(RomanToBopomofo("zx"))];
 const lesson13 = [...GenerateLessonBasic(RomanToBopomofo("cv"))];
 const lesson14 = [...GenerateLessonBasic(RomanToBopomofo("bn"))];
 const lesson15 = [...GenerateLessonBasic(RomanToBopomofo("m,"))];
 const lesson16 = [...GenerateLessonBasic(RomanToBopomofo("./"))];
-const lesson17 = [...GenerateLesson(RomanToBopomofo("zxcvbnm,./"))];
+const lesson17 = () => [...GenerateLessonRandom(RomanToBopomofo("zxcvbnm,./"))];
 const lesson18 = [...GenerateLessonBasic(RomanToBopomofo("12"))];
 const lesson19 = [...GenerateLessonBasic(RomanToBopomofo("34"))];
 const lesson20 = [...GenerateLessonBasic(RomanToBopomofo("67"))];
 const lesson21 = [...GenerateLessonBasic(RomanToBopomofo("58"))];
 const lesson22 = [...GenerateLessonBasic(RomanToBopomofo("90"))];
 const lesson23 = [...GenerateLessonBasic(RomanToBopomofo("-1"))];
-const lesson24 = [...GenerateLesson(RomanToBopomofo("1234567890-"))];
-const lesson25 = [...GenerateLesson(RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./"))];
-const lesson26 = [...GenerateLesson(RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./"))];
-const lesson27 = [...GenerateLesson(RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./"))];
+const lesson24 = () => [
+  ...GenerateLessonRandom(RomanToBopomofo("1234567890-")),
+];
+const lesson25 = () => [
+  ...GenerateLessonRandom(
+    RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./")
+  ),
+];
+const lesson26 = () => [
+  ...GenerateLessonRandom(
+    RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./")
+  ),
+];
+const lesson27 = () => [
+  ...GenerateLessonRandom(
+    RomanToBopomofo("1234567890-qwertyuiopasdfghjkl;zxcvbnm,./")
+  ),
+];
 const lesson28 = [
   ..."ㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢ ㄅㄉˇˋㄓˊ˙ ㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢㄅㄆㄇㄈ ㄉㄊㄋㄌ ˇㄍㄎㄏ ˋㄐㄑㄒㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢ ㄅㄉˇˋㄓˊ˙ ㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢㄅㄆㄇㄈ ㄉㄊㄋㄌ ˇㄍㄎㄏ ˋㄐㄑㄒㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢ ㄅㄉˇˋㄓˊ˙ ㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢㄅㄆㄇㄈ ㄉㄊㄋㄌ ˇㄍㄎㄏ ˋㄐㄑㄒㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢ ㄅㄉˇˋㄓˊ˙ ㄅㄉˇˋㄓ ˊ˙ㄚㄞㄢㄅㄆㄇㄈ ㄉㄊㄋㄌ ˇㄍㄎㄏ ˋㄐㄑㄒ",
 ];
@@ -79,7 +93,7 @@ const lessons = [
   lesson32,
 ];
 
-function GenerateLesson(charArr) {
+function GenerateLessonRandom(charArr) {
   let lessonStr = "";
   for (let i = 0; i < 50; i++) {
     for (let j = 0; j < 4; j++) {
