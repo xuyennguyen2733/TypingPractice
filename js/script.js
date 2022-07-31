@@ -143,9 +143,11 @@ function CustomizeLesson(e) {
 function CancelCustomizedLesson() {
   customContainer.classList.add("hidden");
   overlay.classList.add("hidden");
-  document.addEventListener("keydown", keydownFeedback);
-  document.addEventListener("keyup", keyupFeedback);
-  document.addEventListener("keypress", StartTiming);
+  if (currentIndex < textArr.length) {
+    document.addEventListener("keydown", keydownFeedback);
+    document.addEventListener("keyup", keyupFeedback);
+    document.addEventListener("keypress", StartTiming);
+  }
   customInput.placeholder = "";
   customInput.value = "";
   bopomofoCheckbox.checked = true;
