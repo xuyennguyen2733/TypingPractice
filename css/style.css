@@ -143,8 +143,8 @@ button:active {
   padding-top: 2rem;
   padding-bottom: 2rem;
   display: grid;
-  grid-template-columns: repeat(25, 3.7rem);
-  grid-template-rows: repeat(10, 3.7rem);
+  grid-template-columns: repeat(25, 2.8rem);
+  grid-template-rows: repeat(10, 4rem);
   justify-content: center;
   align-content: center;
   justify-items: center;
@@ -154,7 +154,9 @@ button:active {
   padding: 3rem;
 }
 .text-bopomofo span {
-  width: 3.7rem;
+  width: 2.8rem;
+  display: flex;
+  justify-content: center;
 }
 
 [class*="row"] {
@@ -172,7 +174,7 @@ button:active {
   width: 6.3rem;
   height: 6.3rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 0.3rem;
 

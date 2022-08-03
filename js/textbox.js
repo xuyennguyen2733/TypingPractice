@@ -1,11 +1,6 @@
 "use strict";
 
 const textbox = document.querySelector(".textbox");
-const currentStyle = "";
-const incorrectStyle = "";
-const correctStyle = "";
-const finishMessageStyle = "";
-const titleStyle = "";
 let currentChar, currentIndex, textboxEls, textArr;
 
 function textboxInit(level = 0, custom = false, customText) {
@@ -22,11 +17,11 @@ function textboxInit(level = 0, custom = false, customText) {
     switch (currentLessonIndex) {
       case 5:
       case 11:
-      case 16:
-      case 23:
+      case 17:
       case 24:
       case 25:
       case 26:
+      case 27:
         textArr = lessons[currentLessonIndex]();
         break;
       default:
@@ -68,10 +63,7 @@ function NextCharacter(isCorrect) {
       textboxEls[currentIndex].classList.remove("current-text");
       UnHightlightCurrentKey(currentChar);
       currentIndex++;
-      if (
-        currentIndex % 25 === 24 &&
-        mapObj.currentMap.get(textArr[currentIndex]) === " "
-      ) {
+      if (currentIndex % 25 === 24 && mapObj.currentMap.get(textArr[currentIndex]) === " ") {
         currentIndex++;
       }
       if (currentIndex < textArr.length) {
