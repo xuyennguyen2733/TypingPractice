@@ -174,7 +174,7 @@ button:active {
   width: 6.3rem;
   height: 6.3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0.3rem;
 
